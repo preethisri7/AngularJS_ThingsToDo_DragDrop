@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Things to do</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js"></script>
+  <script src="https://rawgithub.com/angular-ui/ui-sortable/master/src/sortable.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script  src="js/custom.js"></script>
+  <link rel="stylesheet" href="css/custom.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body ng-app="app" ng-controller="appController" class="container">
+  <h1> Planning & Schedule </h1>
+	<div class="adder">
+    <h3> Add New Task : </h3>
+    <input type="text" class="input" placeholder="Add items in your list" ng-model="name"/>
+    <button ng-click="addList()">Add</button>
+  </div>
+
+  <br/>
+
+  <div class="row">
+    <div class="column" style="background-color:#cbdd3a;" ng-style="myStyle1">
+      <h1> To do &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      <span class="dropdown">
+        <i class="fa fa-cog"></i>
+        <div class="dropdown-content">
+          <a href="#" ng-click="myStyle1={background:'#30dcf4'}">Blue</a>
+          <a href="#" ng-click="myStyle1={background:'#1bb078'}">Green</a>
+          <a href="#" ng-click="myStyle1={background:'#c98df2'}">Violet</a>
+        </div>
+      </span>
+      </h1>
+
+      <hr/>
+      <br/>
+
+      <ul ui-sortable="sortableOptions" class="apps-container screen floatleft first" ng-model="list1">
+        <li class="app" ng-repeat="app in list1 track by $index" >{{app}} 
+          <span style="float: right; padding-left: 20px;">
+            <i class="fa fa-edit" data-toggle="modal" data-target="#myModal" ng-click="enableEditor(app)" ></i>
+            <i class="fa fa-close" ng-click="deleteItem(app)"></i>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="column" style="background-color:#f49c15;" ng-style="myStyle2">
+      <h1> In Progress &nbsp &nbsp &nbsp 
+        <span class="dropdown">
+          <i class="fa fa-cog"></i>
+          <div class="dropdown-content">
+            <a href="#" ng-click="myStyle2={background:'#30dcf4'}">Blue</a>
+            <a href="#" ng-click="myStyle2={background:'#1bb078'}">Green</a>
+            <a href="#" ng-click="myStyle2={background:'#c98df2'}">Violet</a>
+          </div>
+        </span> 
+      </h1>
+
+      <hr/>
+      <br/>
+
+      <ul ui-sortable="sortableOptions" class="apps-container screen floatleft second" ng-model="list2">
+        <li class="app" ng-repeat="app in list2 track by $index">{{app}}
+          <span style="float: right; padding-left: 20px;">
+            <i class="fa fa-edit" data-toggle="modal" data-target="#myModal" ng-click="enableEditor(app)"></i>
+            <i class="fa fa-close" ng-click="deleteItem(app)"></i>
+          </span> 
+        </li>
+      </ul>
+    </div>
+
+    <div class="column" style="background-color:#0f9a0f;" ng-style="myStyle3">
+      <h1> Completed &nbsp &nbsp &nbsp 
+        <span class="dropdown">
+          <i class="fa fa-cog"></i>
+          <div class="dropdown-content">
+            <a href="#" ng-click="myStyle3={background:'#30dcf4'}">Blue</a>
+            <a href="#" ng-click="myStyle3={background:'#1bb078'}">Green</a>
+            <a href="#" ng-click="myStyle3={background:'#c98df2'}">Violet</a>
+          </div>
+        </span>
+      </h1>
+
+      <hr/>
+      <br/>
+
+	    <ul ui-sortable="sortableOptions" class="apps-container screen floatleft third" ng-model="list3">
+        <li class="app" ng-repeat="app in list3 track by $index">{{app}}
+          <span style="float: right; padding-left: 20px;">
+            <i class="fa fa-edit" data-toggle="modal" data-target="#myModal" ng-click="enableEditor(app)" ></i>
+            <i class="fa fa-close" ng-click="deleteItem(app)" ></i>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content" style="color: black;">
+        <div class="modal-header" style="background-color: green;">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Edit the Task Title</h4>
+        </div>
+
+        <div class="modal-body">
+          <input type="text" ng-model="editableTitle" ng-show="editorEnabled">
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" ng-click="save()" data-dismiss="modal">Save</button>
+          <button type="button" class="btn btn-default" ng-click="disableEditor()" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
