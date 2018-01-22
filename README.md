@@ -6,4 +6,5 @@ AngularJS - Things to do list
 4. You can edit the name of each task by clicking the symbol ✎
 5. You can remove your desired task from list by clicking the ✗.
 
+![alt text](https://github.com/preethisri7/Angularjs_ThingsToDo_DragDrop/blob/master/Things_To_Do.PNG)
 
